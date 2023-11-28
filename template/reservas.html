@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Reservas Restaurant Fuentealba</title>
+</head>
+<body class="container mt-5">
+    <div class="alert alert-info display-1 text-center"><i class="bi bi-egg-fill"></i>LISTADO DE RESERVAS</div>
+
+    {% if reserva %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Cantidad de Personas</th>
+                <th>Correo Electronico</th>
+                <th>Estado</th>
+                <th>Observación</th>
+                <th>-</th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in reserva %}
+            <tr>
+                <td>{{res.id}}</td>
+                <td>{{res.nombre_persona}}</td>
+                <td>{{res.telefono}}</td>
+                <td>{{res.fecha_reserva}}</td>
+                <td>{{res.hora_reserva}}</td>
+                <td>{{res.cantidad_personas	}}</td>
+                <td>{{res.correo_electronico}}</td>
+                <td>{{res.estado}}</td>
+                <td>{{res.observacion}}</td>
+                <td><a class="btn btn-success btn-sm" href="/actualizar/{{res.id}}"><i class="bi bi-pencil-square"></i></a></td>       
+                <td><a class="btn btn-danger btn-sm" href="/eliminar/{{res.id}}"><i class="bi bi-trash"></i></a></td>         
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <div class="alert alert-danger text-center">
+            No se encuentran reservas en el sistema
+        </div>
+    {% endif %}
+
+    <a href="/" class="btn btn-danger">VOLVER</a>
+    <a href="/agregar" class="btn btn-success float-end">AGREGAR RESERVA</a>
+    
+</body>
+</html>
